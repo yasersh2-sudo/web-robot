@@ -912,6 +912,10 @@ function ProjectEvidenceSection({ t }) {
         </div>
         <div className="project-images">
           <span>{t.realProject.diagramTitle}</span>
+          <img
+            src="/project-assets/system-architecture.png"
+            alt="Gesamtarchitektur des Barkeeper-Roboters mit ROS2-Nodes, Docker-Containern und Hardware"
+          />
           <img src="/project-assets/voice-flow-diagram.svg" alt="Voice Module: Gesamter Gesprächsablauf" />
           <img src="/project-assets/drink-recognition-diagram.svg" alt="Voice Module: Getränkeerkennung und Reaktion" />
         </div>
