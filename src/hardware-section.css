@@ -1,0 +1,280 @@
+/* ── Hardware & Motorsteuerung (pib_tinkerforge) ─────────────────────────
+   Aufbau und Optik angelehnt an .camera-tf-section / .motor-gui-section. */
+
+.hw-section {
+  --hw-violet: #b57eff;
+  display: grid;
+  width: min(1650px, calc(100% - 110px));
+  grid-template-rows: auto auto auto minmax(0, 1fr);
+  gap: 14px;
+}
+
+/* Header — gleiches Muster wie camera-tf-header */
+.hw-header {
+  display: grid;
+  grid-template-columns: minmax(460px, 1.1fr) minmax(340px, .75fr) auto;
+  gap: 30px;
+  align-items: end;
+}
+.hw-header h2 { margin: 6px 0 0; font-size: clamp(2.3rem, 3.5vw, 4.2rem); line-height: 1; }
+.hw-header > p { margin: 0; color: var(--muted); line-height: 1.55; }
+.hw-tags { display: flex; flex-wrap: wrap; gap: 7px; justify-content: flex-end; }
+.hw-tags code {
+  border: 1px solid rgba(77,231,255,.22);
+  border-radius: 8px;
+  padding: 7px 10px;
+  background: rgba(77,231,255,.06);
+  color: var(--cyan);
+  font-size: .7rem;
+}
+
+/* Kennzahlen — Muster wie bt-live-facts */
+.hw-facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; overflow: hidden; border-radius: 10px; background: var(--line); }
+.hw-facts article { min-height: 68px; padding: 12px; background: rgba(10,16,23,.98); }
+.hw-facts span, .hw-facts code { display: block; }
+.hw-facts span { margin-bottom: 7px; color: var(--muted); font-size: .62rem; font-weight: 800; text-transform: uppercase; }
+.hw-facts code { color: var(--cyan); font-size: 1.15rem; font-weight: 800; }
+.hw-facts .live code { color: var(--lime); }
+.hw-facts .live i {
+  display: inline-block;
+  width: 8px; height: 8px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: var(--lime);
+  box-shadow: 0 0 14px rgba(197,255,98,.8);
+  animation: signalPulse 1.5s ease-in-out infinite;
+}
+
+/* Tabs — Muster wie camera-tf-tabs */
+.hw-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.hw-tabs button {
+  min-height: 46px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255,255,255,.035);
+  color: var(--muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: .8rem;
+  font-weight: 850;
+}
+.hw-tabs button.active {
+  border-color: rgba(77,231,255,.55);
+  background: rgba(77,231,255,.1);
+  color: var(--cyan);
+  box-shadow: 0 0 25px rgba(77,231,255,.08);
+}
+
+/* Panel — Muster wie camera-tf-panel */
+.hw-panel {
+  min-height: 0;
+  overflow: auto;
+  border: 1px solid rgba(77,231,255,.2);
+  border-radius: 22px;
+  padding: clamp(18px, 2vw, 28px);
+  background: linear-gradient(145deg, rgba(16,27,38,.94), rgba(5,10,15,.9));
+}
+.hw-panel-heading { margin-bottom: 24px; }
+.hw-panel-heading span { color: var(--cyan); font-family: monospace; font-size: .76rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.hw-panel-heading h3 { margin: 7px 0 0; font-size: clamp(1.6rem, 2.2vw, 2.45rem); }
+
+/* ── Tab 01: Anatomie ── */
+.hw-anatomy { display: grid; min-height: 100%; grid-template-columns: minmax(0, 1.05fr) minmax(390px, .95fr); gap: 22px; }
+
+.hw-stage {
+  position: relative;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(77,231,255,.25);
+  border-radius: 18px;
+  padding-top: 44px;
+  background:
+    linear-gradient(rgba(77,231,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(77,231,255,.025) 1px, transparent 1px),
+    radial-gradient(circle at 50% 42%, rgba(77,231,255,.09), transparent 58%),
+    #040a10;
+  background-size: 34px 34px, 34px 34px, auto, auto;
+}
+.hw-stage svg { display: block; width: 100%; height: 100%; max-height: 560px; min-height: 0; margin: 0 auto; }
+.hw-stage figcaption { border-top: 1px solid rgba(77,231,255,.14); padding: 10px 14px; color: var(--muted); font-size: .68rem; }
+.hw-stage-status {
+  position: absolute; z-index: 2; top: 14px; right: 16px; left: 16px;
+  display: flex; justify-content: space-between;
+  color: var(--muted); font: 800 .6rem monospace; letter-spacing: .08em;
+}
+.hw-stage-status span { display: flex; gap: 7px; align-items: center; }
+.hw-stage-status i { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 12px rgba(197,255,98,.8); animation: signalPulse 1.5s ease-in-out infinite; }
+.hw-stage-status code { color: var(--cyan); }
+
+/* Roboter: weißer 3D-Druck-pib auf dunklem Grund */
+.hw-bone { fill: #e9eef2; stroke: #8fa2ae; stroke-width: 1.6; }
+.hw-bone.thin { stroke-width: 1.2; }
+.hw-seam { fill: none; stroke: #b9c6ce; stroke-width: 1; }
+.hw-cable { fill: none; stroke: rgba(160,215,232,.28); stroke-width: 1.1; stroke-dasharray: 3 4; }
+
+/* Komponenten (violett) */
+.hw-comp { cursor: pointer; }
+.hw-comp rect { fill: rgba(181,126,255,.1); stroke: var(--hw-violet); stroke-width: 1.4; }
+.hw-comp rect.dashed { stroke-dasharray: 5 4; }
+.hw-comp rect.hw-visor { fill: #0b1320; stroke: var(--hw-violet); }
+.hw-comp .hw-eye { fill: #16222e; stroke: var(--cyan); stroke-width: 1.4; }
+.hw-comp text { fill: #cba8ff; font-family: monospace; font-size: 8.5px; font-weight: 700; text-anchor: middle; pointer-events: none; }
+.hw-comp text.sub { fill: var(--muted); font-size: 7.5px; }
+.hw-comp.active rect { fill: rgba(181,126,255,.4); stroke: #d7bcff; filter: drop-shadow(0 0 8px rgba(181,126,255,.55)); }
+.hw-comp.active rect.hw-visor { fill: #1a1230; }
+.hw-comp:focus-visible rect { stroke-width: 2.6; outline: none; }
+
+/* Servo-Marker (cyan, aktiv = lime-Puls) */
+.hw-servo { cursor: pointer; }
+.hw-servo .dot { fill: #0b1220; stroke: var(--cyan); stroke-width: 1.8; transition: fill .2s, stroke .2s; }
+.hw-servo .ring { fill: none; stroke: var(--lime); stroke-width: 2; opacity: 0; pointer-events: none; transform-box: fill-box; transform-origin: center; }
+.hw-servo.dim .dot { stroke: rgba(160,215,232,.24); }
+.hw-servo.grouped .dot { fill: rgba(77,231,255,.28); }
+.hw-servo.active .dot { fill: var(--lime); stroke: var(--lime); filter: drop-shadow(0 0 8px rgba(197,255,98,.7)); }
+.hw-servo.active .ring { opacity: 1; animation: hwPulse 1.6s ease-out infinite; }
+.hw-servo:focus-visible .dot { stroke-width: 3.2; outline: none; }
+@keyframes hwPulse {
+  0% { transform: scale(.6); opacity: .9; }
+  80% { transform: scale(2.2); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* Rechte Seite: Filter + Infopanel */
+.hw-side { display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 12px; align-content: start; min-width: 0; }
+.hw-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.hw-chips button {
+  min-height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0 14px;
+  background: rgba(255,255,255,.035);
+  color: var(--muted);
+  cursor: pointer;
+  font: 750 .74rem monospace;
+  transition: all 160ms ease;
+}
+.hw-chips button:hover { border-color: rgba(77,231,255,.5); color: var(--text); }
+.hw-chips button.on { border-color: rgba(77,231,255,.62); background: rgba(77,231,255,.12); color: var(--cyan); box-shadow: 0 0 18px rgba(77,231,255,.12); }
+.hw-chips button.tour { margin-left: auto; border-color: rgba(197,255,98,.35); color: var(--lime); }
+.hw-chips button.tour.on { background: rgba(197,255,98,.12); border-color: rgba(197,255,98,.6); box-shadow: 0 0 18px rgba(197,255,98,.14); }
+
+.hw-info {
+  min-height: 250px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 24px;
+  background: linear-gradient(180deg, rgba(21,31,43,.86), rgba(10,15,21,.7));
+}
+.hw-tag {
+  display: inline-block;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font: 800 .64rem monospace;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.hw-tag.servo { background: rgba(77,231,255,.12); color: var(--cyan); }
+.hw-tag.comp { background: rgba(181,126,255,.14); color: #cba8ff; }
+.hw-info h3 { margin: 0 0 5px; font-size: 1.45rem; }
+.hw-motorname { display: block; color: var(--muted); font-size: .78rem; overflow-wrap: anywhere; }
+.hw-info p { margin: 14px 0 0; color: var(--muted); font-size: .92rem; line-height: 1.6; }
+.hw-joints { margin-top: 16px; padding-top: 12px; border-top: 1px dashed var(--line); }
+.hw-joints b { display: block; margin-bottom: 6px; color: var(--muted); font: 800 .62rem monospace; letter-spacing: .1em; text-transform: uppercase; }
+.hw-joints code {
+  display: inline-block;
+  margin: 2px 4px 2px 0;
+  border: 1px solid rgba(53,208,164,.25);
+  border-radius: 6px;
+  padding: 3px 7px;
+  background: rgba(53,208,164,.07);
+  color: #50e0b8;
+  font-size: .72rem;
+}
+.hw-doppel { margin-top: 12px; color: var(--lime); font-size: .8rem; font-weight: 600; }
+
+/* ── Tab 02: Signalkette ── */
+.hw-chain { display: flex; align-items: stretch; gap: 0; overflow-x: auto; padding-bottom: 6px; }
+.hw-chain article {
+  flex: 1 1 0;
+  min-width: 148px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  padding: 16px;
+  background: rgba(255,255,255,.03);
+}
+.hw-chain strong { display: block; font-size: .95rem; }
+.hw-chain span { display: block; margin-top: 6px; color: var(--muted); font-family: monospace; font-size: .68rem; line-height: 1.5; }
+.hw-link { position: relative; flex: 0 0 42px; align-self: center; height: 2px; background: var(--line); }
+.hw-link::after {
+  position: absolute; top: -3px; left: 0;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 10px rgba(77,231,255,.7);
+  content: "";
+  animation: hwTravel 1.4s linear infinite;
+}
+@keyframes hwTravel {
+  from { left: -4px; opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  to { left: calc(100% - 4px); opacity: 0; }
+}
+.hw-units {
+  margin-top: 18px;
+  border: 1px dashed rgba(77,231,255,.25);
+  border-radius: 12px;
+  padding: 14px 18px;
+  color: var(--muted);
+  font-family: monospace;
+  font-size: .8rem;
+  line-height: 1.6;
+}
+.hw-units b { color: var(--cyan); font-weight: 700; }
+
+/* ── Tab 03: Knifflige Details ── */
+.hw-tricky { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.hw-tricky article {
+  min-height: 190px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 24px;
+  background: rgba(255,255,255,.03);
+  transition: border-color 180ms ease, transform 180ms ease;
+}
+.hw-tricky article:hover { border-color: rgba(77,231,255,.4); transform: translateY(-3px); }
+.hw-tricky span { color: var(--pink); font: 800 .68rem monospace; letter-spacing: .1em; text-transform: uppercase; }
+.hw-tricky h4 { margin: 12px 0 10px; font-size: 1.15rem; }
+.hw-tricky p { margin: 0; color: var(--muted); font-size: .86rem; line-height: 1.6; }
+.hw-tricky code { color: #50e0b8; font-size: .78rem; }
+
+/* Scroll-Scene-Layout wie die anderen Doku-Szenen */
+@media (min-width: 961px) {
+  .section-band.hw-section.scroll-scene {
+    align-content: stretch;
+    padding-top: 82px;
+    padding-bottom: 28px;
+  }
+}
+@media (max-width: 960px) {
+  .hw-header { grid-template-columns: 1fr; gap: 14px; }
+  .hw-tags { justify-content: flex-start; }
+  .hw-anatomy { grid-template-columns: 1fr; }
+  .hw-stage svg { max-height: 480px; }
+  .hw-facts { grid-template-columns: repeat(2, 1fr); }
+  .hw-chips button.tour { margin-left: 0; }
+}
+@media (max-width: 640px) {
+  .hw-tabs { grid-template-columns: 1fr; }
+  .hw-tricky { grid-template-columns: 1fr; }
+  .hw-facts { grid-template-columns: repeat(2, 1fr); }
+  .hw-chain { flex-direction: column; }
+  .hw-link { flex-basis: 26px; width: 2px; height: 26px; align-self: center; }
+  .hw-link::after { animation: none; top: auto; bottom: 0; left: -3px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hw-link::after, .hw-facts .live i, .hw-stage-status i, .hw-servo.active .ring { animation: none; }
+}

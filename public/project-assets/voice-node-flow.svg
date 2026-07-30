@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="860" viewBox="0 0 1400 860">
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#07131f"/><stop offset="1" stop-color="#10162a"/></linearGradient>
+    <linearGradient id="core" x2="1"><stop stop-color="#15dce8"/><stop offset="1" stop-color="#a7f35c"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#3de8ff"/></marker>
+  </defs>
+  <rect width="1400" height="860" rx="34" fill="url(#bg)"/>
+  <g stroke="#16354b" opacity=".45"><path d="M0 140H1400M0 280H1400M0 420H1400M0 560H1400M0 700H1400"/><path d="M200 0V860M400 0V860M600 0V860M800 0V860M1000 0V860M1200 0V860"/></g>
+  <text x="70" y="82" fill="#eaf6fb" font-family="Arial" font-size="38" font-weight="700">VoiceNode · Dialogsteuerung</text>
+  <text x="70" y="122" fill="#87a5b7" font-family="Arial" font-size="20">Zentrale Zustandsmaschine für den vollständigen Sprachdialog</text>
+  <g font-family="Arial">
+    <rect x="70" y="260" width="250" height="112" rx="18" fill="#101f31" stroke="#3de8ff" stroke-width="2"/>
+    <text x="195" y="304" fill="#3de8ff" text-anchor="middle" font-size="18" font-weight="700">EINGÄNGE</text>
+    <text x="195" y="337" fill="#dcebf2" text-anchor="middle" font-size="19">/camera_event</text>
+    <text x="195" y="362" fill="#91a9b7" text-anchor="middle" font-size="16">Gast erkannt</text>
+    <path d="M320 316H460" stroke="#3de8ff" stroke-width="4" marker-end="url(#arrow)"/>
+    <rect x="470" y="200" width="460" height="360" rx="28" fill="#0d2430" stroke="url(#core)" stroke-width="4" filter="url(#glow)"/>
+    <text x="700" y="255" fill="#eaf6fb" text-anchor="middle" font-size="32" font-weight="700">VoiceNode</text>
+    <text x="700" y="288" fill="#65e5d3" text-anchor="middle" font-size="17">STATE MACHINE</text>
+    <g font-size="16" font-weight="700" text-anchor="middle">
+      <rect x="525" y="330" width="145" height="54" rx="27" fill="#18334a"/><text x="598" y="364" fill="#eaf6fb">GREETING</text>
+      <rect x="730" y="330" width="145" height="54" rx="27" fill="#173b3b"/><text x="803" y="364" fill="#9df2cf">LISTENING</text>
+      <rect x="525" y="420" width="145" height="54" rx="27" fill="#2a2445"/><text x="598" y="454" fill="#d1baff">PROCESSING</text>
+      <rect x="730" y="420" width="145" height="54" rx="27" fill="#3b2f18"/><text x="803" y="454" fill="#ffd27a">WAITING_ROBOT</text>
+      <rect x="628" y="492" width="145" height="42" rx="21" fill="#193729"/><text x="700" y="519" fill="#baf56d">READY</text>
+    </g>
+    <path d="M930 316H1070" stroke="#3de8ff" stroke-width="4" marker-end="url(#arrow)"/>
+    <rect x="1080" y="190" width="250" height="290" rx="20" fill="#101f31" stroke="#a7f35c" stroke-width="2"/>
+    <text x="1205" y="235" fill="#a7f35c" text-anchor="middle" font-size="18" font-weight="700">AUSGÄNGE</text>
+    <text x="1205" y="280" fill="#eaf6fb" text-anchor="middle" font-size="19">/emotion</text>
+    <text x="1205" y="330" fill="#eaf6fb" text-anchor="middle" font-size="19">/order_event</text>
+    <text x="1205" y="380" fill="#eaf6fb" text-anchor="middle" font-size="19">TTS-Antwort</text>
+    <text x="1205" y="430" fill="#91a9b7" text-anchor="middle" font-size="16">Roboteraktion</text>
+    <rect x="470" y="640" width="860" height="110" rx="18" fill="#0b1826" stroke="#21445d"/>
+    <text x="500" y="682" fill="#3de8ff" font-size="16" font-weight="700">RÜCKMELDUNG</text>
+    <text x="500" y="720" fill="#dcebf2" font-size="20">/robot_status → preparing · ready · unavailable · error</text>
+    <path d="M1080 695H930V560" fill="none" stroke="#a887ff" stroke-width="3" stroke-dasharray="10 8" marker-end="url(#arrow)"/>
+  </g>
+</svg>

@@ -1,0 +1,368 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: #203654;
+  color: #f8fbfb;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.display {
+  --face-u: min(1svh, 0.78vw);
+  align-items: center;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(76, 119, 164, 0.34), transparent 54%),
+    linear-gradient(145deg, #294565 0%, #1d324f 58%, #172a44 100%);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  overflow: hidden;
+  transition: background 260ms ease;
+}
+
+.face {
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto auto;
+  justify-items: center;
+  min-height: calc(86 * var(--face-u));
+  position: relative;
+  width: min(96vw, calc(130 * var(--face-u)));
+}
+
+.eyebrows {
+  display: flex;
+  gap: clamp(148px, calc(20.5 * var(--face-u)), 252px);
+  grid-row: 1;
+  justify-content: center;
+  margin-bottom: clamp(10px, calc(1.8 * var(--face-u)), 24px);
+  transform: translateY(calc(-2.6 * var(--face-u)));
+  width: 100%;
+  z-index: 3;
+}
+
+.brow {
+  --brow-rotate: 0deg;
+  --brow-x: 0px;
+  --brow-y: 0px;
+  background: #d7d7d7;
+  border-top: 0 solid transparent;
+  border-radius: 999px;
+  box-shadow:
+    0 calc(0.55 * var(--face-u)) 0 rgba(0, 0, 0, 0.18),
+    0 0 calc(1.5 * var(--face-u)) rgba(255, 255, 255, 0.12);
+  display: block;
+  height: clamp(14px, calc(1.7 * var(--face-u)), 22px);
+  transform:
+    translate(var(--brow-x), var(--brow-y))
+    rotate(var(--brow-rotate));
+  transform-origin: center;
+  transition:
+    background 220ms ease,
+    border-top-width 220ms ease,
+    border-radius 220ms ease,
+    height 220ms ease,
+    transform 220ms ease,
+    width 220ms ease;
+  width: clamp(122px, calc(16 * var(--face-u)), 190px);
+}
+
+.eyes {
+  display: flex;
+  gap: clamp(76px, calc(12 * var(--face-u)), 168px);
+  grid-row: 2;
+  justify-content: center;
+  transform: translateY(calc(-2.5 * var(--face-u)));
+  width: 100%;
+}
+
+.eye {
+  /* Animation variables are driven by anime.js; CSS still owns the base shape. */
+  --eye-scale-y: 1;
+  --eye-shift-x: 0px;
+  --eye-shift-y: 0px;
+  --eye-rotate: 0deg;
+  --eye-skew: 0deg;
+  align-items: center;
+  background: linear-gradient(180deg, #ffffff 0%, #f5f7f7 100%);
+  border-radius: 50%;
+  box-shadow:
+    0 calc(1.2 * var(--face-u)) 0 rgba(0, 0, 0, 0.18),
+    0 0 calc(2.8 * var(--face-u)) rgba(255, 255, 255, 0.16);
+  display: flex;
+  height: clamp(176px, calc(24.5 * var(--face-u)), 300px);
+  justify-content: center;
+  position: relative;
+  transform:
+    translate(var(--eye-shift-x), var(--eye-shift-y))
+    rotate(var(--eye-rotate))
+    skewY(var(--eye-skew))
+    scaleY(var(--eye-scale-y));
+  transform-origin: center;
+  transition:
+    border-radius 220ms ease,
+    box-shadow 220ms ease,
+    height 220ms ease,
+    width 220ms ease;
+  width: clamp(176px, calc(24.5 * var(--face-u)), 300px);
+  will-change: transform;
+}
+
+.pupil {
+  --pupil-x: 16%;
+  --pupil-y: -3%;
+  background:
+    radial-gradient(circle at 68% 24%, #ffffff 0 15%, transparent 16%),
+    #232e30;
+  border-radius: 50%;
+  box-shadow: inset 0 calc(-0.6 * var(--face-u)) 0 rgba(255, 255, 255, 0.08);
+  height: 47%;
+  transform: translate(var(--pupil-x), var(--pupil-y));
+  transition: transform 260ms ease;
+  width: 47%;
+}
+
+.eye::before,
+.eye::after {
+  background: #f11919;
+  border-radius: 999px;
+  content: "";
+  display: none;
+  height: 20%;
+  left: 8%;
+  position: absolute;
+  top: 40%;
+  width: 84%;
+}
+
+.eye::before {
+  transform: rotate(45deg);
+}
+
+.eye::after {
+  transform: rotate(-45deg);
+}
+
+.mustache {
+  display: block;
+  filter:
+    drop-shadow(0 calc(0.9 * var(--face-u)) 0 rgba(0, 0, 0, 0.16))
+    drop-shadow(0 0 calc(1.8 * var(--face-u)) rgba(255, 255, 255, 0.08));
+  grid-row: 3;
+  height: clamp(116px, calc(15 * var(--face-u)), 184px);
+  margin: clamp(130px, calc(18 * var(--face-u)), 220px) 0 clamp(-52px, calc(-5.2 * var(--face-u)), -30px);
+  object-fit: contain;
+  pointer-events: none;
+  width: clamp(330px, calc(43 * var(--face-u)), 520px);
+  z-index: 2;
+}
+
+.mouth {
+  /* The SVG spritesheet provides the shape; these variables only animate scale/lift. */
+  --mouth-lift: 0px;
+  --mouth-scale-x: 1;
+  --mouth-scale-y: 1;
+  grid-row: 4;
+  height: clamp(146px, calc(20 * var(--face-u)), 240px);
+  margin-top: 0;
+  overflow: hidden;
+  transform:
+    translateY(var(--mouth-lift))
+    scale(var(--mouth-scale-x), var(--mouth-scale-y));
+  transform-origin: center;
+  width: clamp(410px, calc(56 * var(--face-u)), 670px);
+  will-change: transform;
+  z-index: 1;
+}
+
+.mouth-sprite-layer {
+  filter:
+    drop-shadow(0 calc(1 * var(--face-u)) 0 rgba(0, 0, 0, 0.18))
+    drop-shadow(0 0 calc(1.8 * var(--face-u)) rgba(255, 255, 255, 0.1));
+}
+
+#emotion-label {
+  font-size: clamp(28px, calc(5.6 * var(--face-u)), 66px);
+  letter-spacing: 0;
+  line-height: 1;
+  margin: calc(6 * var(--face-u)) 0 0;
+  text-shadow:
+    0 calc(0.4 * var(--face-u)) 0 rgba(0, 0, 0, 0.32),
+    0 0 calc(2 * var(--face-u)) rgba(255, 255, 255, 0.08);
+}
+
+#connection-label {
+  color: #aeb8bd;
+  font-size: clamp(14px, calc(2 * var(--face-u)), 22px);
+  margin: 1rem 0 0;
+}
+
+.status-text {
+  /* Keep ROS/debug state in the DOM without showing it on the robot face. */
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  width: 1px;
+}
+
+.display[data-emotion="happy"] .eye-left {
+  --eye-rotate: -3deg;
+}
+
+.display[data-emotion="happy"] .eye-right {
+  --eye-rotate: 3deg;
+}
+
+.display[data-emotion="happy"] .brow-left {
+  --brow-rotate: -16deg;
+  --brow-y: calc(-1.4 * var(--face-u));
+  background: transparent;
+  border-radius: 50% 50% 0 0;
+  border-top: clamp(12px, calc(1.5 * var(--face-u)), 18px) solid #d7d7d7;
+  box-shadow: none;
+  height: clamp(42px, calc(5.4 * var(--face-u)), 68px);
+}
+
+.display[data-emotion="happy"] .brow-right {
+  --brow-rotate: 16deg;
+  --brow-y: calc(-1.4 * var(--face-u));
+  background: transparent;
+  border-radius: 50% 50% 0 0;
+  border-top: clamp(12px, calc(1.5 * var(--face-u)), 18px) solid #d7d7d7;
+  box-shadow: none;
+  height: clamp(42px, calc(5.4 * var(--face-u)), 68px);
+}
+
+.display[data-emotion="happy"] .mouth {
+  width: clamp(450px, calc(61 * var(--face-u)), 730px);
+}
+
+.display[data-emotion="error"] .brow-left {
+  --brow-rotate: 18deg;
+  --brow-y: calc(0.6 * var(--face-u));
+}
+
+.display[data-emotion="error"] .brow-right {
+  --brow-rotate: -18deg;
+  --brow-y: calc(0.6 * var(--face-u));
+}
+
+.display[data-emotion="talking"] .mouth {
+  height: clamp(150px, calc(20 * var(--face-u)), 240px);
+  width: clamp(280px, calc(36 * var(--face-u)), 430px);
+}
+
+.display[data-emotion="talking"] .brow-left {
+  --brow-rotate: -8deg;
+  --brow-y: calc(-0.6 * var(--face-u));
+}
+
+.display[data-emotion="talking"] .brow-right {
+  --brow-rotate: 8deg;
+  --brow-y: calc(-0.6 * var(--face-u));
+}
+
+.display[data-emotion="listening"] .brow-left {
+  --brow-rotate: -4deg;
+  --brow-y: calc(-0.4 * var(--face-u));
+}
+
+.display[data-emotion="listening"] .brow-right {
+  --brow-rotate: 4deg;
+  --brow-y: calc(-0.4 * var(--face-u));
+}
+
+.display[data-emotion="preparation"] .brow-left {
+  --brow-rotate: -12deg;
+  --brow-x: calc(-0.5 * var(--face-u));
+  --brow-y: calc(0.2 * var(--face-u));
+}
+
+.display[data-emotion="preparation"] .brow-right {
+  --brow-rotate: 10deg;
+  --brow-x: calc(0.7 * var(--face-u));
+  --brow-y: calc(-1 * var(--face-u));
+}
+
+.display[data-emotion="preparation"] .mouth {
+  height: clamp(76px, calc(10 * var(--face-u)), 122px);
+  margin-top: 0;
+  width: clamp(124px, calc(16 * var(--face-u)), 194px);
+}
+
+.display[data-emotion="preparation"] .eye-left {
+  --eye-shift-y: calc(-0.7 * var(--face-u));
+}
+
+.display[data-emotion="preparation"] .eye-right {
+  --eye-shift-y: calc(0.7 * var(--face-u));
+}
+
+.display[data-emotion="confused"] .mouth {
+  transform:
+    translateY(var(--mouth-lift))
+    rotate(-4deg)
+    scale(var(--mouth-scale-x), var(--mouth-scale-y));
+  width: clamp(390px, calc(51 * var(--face-u)), 620px);
+}
+
+.display[data-emotion="confused"] .brow-left {
+  --brow-rotate: -26deg;
+  --brow-x: calc(-0.4 * var(--face-u));
+  --brow-y: calc(-1.2 * var(--face-u));
+}
+
+.display[data-emotion="confused"] .brow-right {
+  --brow-rotate: 14deg;
+  --brow-x: calc(0.8 * var(--face-u));
+  --brow-y: calc(0.8 * var(--face-u));
+}
+
+.display[data-emotion="confused"] .eye-left {
+  --eye-rotate: 6deg;
+  --eye-shift-y: calc(0.6 * var(--face-u));
+}
+
+.display[data-emotion="confused"] .eye-right {
+  --eye-rotate: -4deg;
+  --eye-shift-y: calc(-0.5 * var(--face-u));
+}
+
+.display[data-emotion="error"] .eye {
+  background: transparent;
+  box-shadow: none;
+}
+
+.display[data-emotion="error"] .eye::before,
+.display[data-emotion="error"] .eye::after {
+  display: block;
+}
+
+.display[data-emotion="error"] .pupil {
+  opacity: 0;
+}
+
+.display[data-emotion="error"] .mouth {
+  width: clamp(420px, calc(55 * var(--face-u)), 660px);
+}
+
+.preview .display {
+  min-width: 720px;
+  min-height: 520px;
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%) scale(0.18);
+  transform-origin: center;
+}

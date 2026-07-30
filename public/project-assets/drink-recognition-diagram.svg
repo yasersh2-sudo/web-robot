@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  <defs>
+    <marker id="arrow2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#334155"/>
+    </marker>
+    <style>
+      .title { font: 700 28px Arial, sans-serif; fill: #0f172a; }
+      .label { font: 600 17px Arial, sans-serif; fill: #0f172a; text-anchor: middle; }
+      .small { font: 15px Arial, sans-serif; fill: #334155; text-anchor: middle; }
+      .box { fill: #ffffff; stroke: #2563eb; stroke-width: 2.5; rx: 8; }
+      .decision { fill: #fef3c7; stroke: #d97706; stroke-width: 2.5; }
+      .cola { fill: #fef2f2; stroke: #dc2626; stroke-width: 2.5; rx: 8; }
+      .water { fill: #eff6ff; stroke: #0284c7; stroke-width: 2.5; rx: 8; }
+      .action { fill: #ecfdf5; stroke: #059669; stroke-width: 2.5; rx: 8; }
+      .fallback { fill: #f8fafc; stroke: #64748b; stroke-width: 2.5; rx: 8; }
+      .line { fill: none; stroke: #334155; stroke-width: 2.5; marker-end: url(#arrow2); }
+    </style>
+  </defs>
+
+  <rect width="1200" height="760" fill="#f8fafc"/>
+  <text x="600" y="45" class="title" text-anchor="middle">Voice Module: Getränkeerkennung und Reaktion</text>
+
+  <rect x="450" y="80" width="300" height="65" class="box"/>
+  <text x="600" y="108" class="label">LLM-Ergebnis</text>
+  <text x="600" y="132" class="small">intent + item + reply + state</text>
+
+  <polygon points="600,190 765,260 600,330 435,260" class="decision"/>
+  <text x="600" y="255" class="label">Getränk erkannt?</text>
+
+  <rect x="60" y="365" width="270" height="75" class="fallback"/>
+  <text x="195" y="397" class="label">Kein Getränk</text>
+  <text x="195" y="421" class="small">Small Talk weiterführen</text>
+
+  <polygon points="600,365 750,430 600,495 450,430" class="decision"/>
+  <text x="600" y="425" class="label">Welches Getränk?</text>
+
+  <rect x="55" y="555" width="270" height="85" class="cola"/>
+  <text x="190" y="588" class="label">Cola</text>
+  <text x="190" y="614" class="small">item = cola</text>
+
+  <rect x="465" y="555" width="270" height="85" class="water"/>
+  <text x="600" y="588" class="label">Wasser</text>
+  <text x="600" y="614" class="small">item = wasser</text>
+
+  <rect x="875" y="555" width="270" height="85" class="fallback"/>
+  <text x="1010" y="585" class="label">Anderes Getränk</text>
+  <text x="1010" y="612" class="small">Cola/Wasser nennen</text>
+
+  <rect x="390" y="685" width="420" height="58" class="action"/>
+  <text x="600" y="710" class="label">Status + item → Barkeeper-Tree → Zeigegeste</text>
+  <text x="600" y="733" class="small">TTS: „Hier ist die Cola / das Wasser.“</text>
+
+  <path d="M600 145 L600 190" class="line"/>
+  <path d="M435 260 L195 260 L195 365" class="line"/>
+  <text x="315" y="245" class="small">Nein</text>
+  <path d="M600 330 L600 365" class="line"/>
+  <text x="640" y="351" class="small">Ja</text>
+
+  <path d="M450 430 L190 430 L190 555" class="line"/>
+  <text x="315" y="415" class="small">Cola</text>
+  <path d="M600 495 L600 555" class="line"/>
+  <text x="650" y="525" class="small">Wasser</text>
+  <path d="M750 430 L1010 430 L1010 555" class="line"/>
+  <text x="880" y="415" class="small">Anderes</text>
+
+  <path d="M190 640 L190 660 L500 660 L500 685" class="line"/>
+  <path d="M600 640 L600 685" class="line"/>
+  <path d="M1010 640 L1010 660 L700 660 L700 685" class="line"/>
+</svg>

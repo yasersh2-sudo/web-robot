@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780" viewBox="0 0 1200 780">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#334155"/>
+    </marker>
+    <style>
+      .title { font: 700 28px Arial, sans-serif; fill: #0f172a; }
+      .label { font: 600 17px Arial, sans-serif; fill: #0f172a; text-anchor: middle; }
+      .small { font: 15px Arial, sans-serif; fill: #334155; text-anchor: middle; }
+      .box { fill: #ffffff; stroke: #2563eb; stroke-width: 2.5; rx: 8; }
+      .decision { fill: #fef3c7; stroke: #d97706; stroke-width: 2.5; }
+      .action { fill: #ecfdf5; stroke: #059669; stroke-width: 2.5; rx: 8; }
+      .fallback { fill: #fff1f2; stroke: #e11d48; stroke-width: 2.5; rx: 8; }
+      .line { fill: none; stroke: #334155; stroke-width: 2.5; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1200" height="780" fill="#f8fafc"/>
+  <text x="600" y="45" class="title" text-anchor="middle">Voice Module: Gesamter Gesprächsablauf</text>
+
+  <rect x="450" y="75" width="300" height="62" class="box"/>
+  <text x="600" y="112" class="label">Person wird erkannt</text>
+
+  <rect x="450" y="175" width="300" height="62" class="box"/>
+  <text x="600" y="212" class="label">Gast begrüßen</text>
+
+  <rect x="450" y="275" width="300" height="62" class="box"/>
+  <text x="600" y="312" class="label">Sprache aufnehmen</text>
+
+  <rect x="450" y="375" width="300" height="62" class="box"/>
+  <text x="600" y="402" class="label">STT wandelt Audio in Text</text>
+  <text x="600" y="424" class="small">Mikrofon → Text</text>
+
+  <polygon points="600,475 765,545 600,615 435,545" class="decision"/>
+  <text x="600" y="538" class="label">Cola oder Wasser</text>
+  <text x="600" y="562" class="label">erkannt?</text>
+
+  <rect x="65" y="650" width="300" height="70" class="fallback"/>
+  <text x="215" y="680" class="label">Small Talk / unklar</text>
+  <text x="215" y="703" class="small">Antworten und weiter zuhören</text>
+
+  <rect x="450" y="665" width="300" height="70" class="fallback"/>
+  <text x="600" y="695" class="label">Anderes Getränk</text>
+  <text x="600" y="718" class="small">Auf Cola und Wasser hinweisen</text>
+
+  <rect x="835" y="640" width="300" height="90" class="action"/>
+  <text x="985" y="671" class="label">Getränk weitergeben</text>
+  <text x="985" y="695" class="small">TTS: „Hier ist …“</text>
+  <text x="985" y="716" class="small">Zeigegeste auslösen</text>
+
+  <path d="M600 137 L600 175" class="line"/>
+  <path d="M600 237 L600 275" class="line"/>
+  <path d="M600 337 L600 375" class="line"/>
+  <path d="M600 437 L600 475" class="line"/>
+
+  <path d="M435 545 L215 545 L215 650" class="line"/>
+  <text x="315" y="530" class="small">Nein / Small Talk</text>
+
+  <path d="M600 615 L600 665" class="line"/>
+  <text x="660" y="642" class="small">Nicht unterstützt</text>
+
+  <path d="M765 545 L985 545 L985 640" class="line"/>
+  <text x="875" y="530" class="small">Ja</text>
+
+  <path d="M215 650 L215 306 L450 306" class="line"/>
+  <path d="M450 700 L400 700 L400 306 L450 306" class="line"/>
+</svg>

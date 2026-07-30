@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="860" viewBox="0 0 1400 860">
+  <defs>
+    <linearGradient id="bg2" x2="1" y2="1"><stop stop-color="#06121e"/><stop offset="1" stop-color="#14152a"/></linearGradient>
+    <marker id="a2" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#43e5ff"/></marker>
+  </defs>
+  <rect width="1400" height="860" rx="34" fill="url(#bg2)"/>
+  <text x="70" y="82" fill="#edf8fc" font-family="Arial" font-size="38" font-weight="700">STTModule · Speech to Text</text>
+  <text x="70" y="122" fill="#88a7b9" font-family="Arial" font-size="20">Robuste deutsche Transkription mit Whisper und Nachbearbeitung</text>
+  <g font-family="Arial" text-anchor="middle">
+    <g transform="translate(55 265)">
+      <rect width="260" height="250" rx="24" fill="#0f2232" stroke="#43e5ff" stroke-width="2"/>
+      <circle cx="130" cy="83" r="42" fill="#103b4c" stroke="#43e5ff" stroke-width="3"/>
+      <path d="M130 55v55M110 78v10c0 28 40 28 40 0V78M95 100c5 38 65 38 70 0M130 128v32M102 160h56" fill="none" stroke="#43e5ff" stroke-width="7" stroke-linecap="round"/>
+      <text x="130" y="195" fill="#edf8fc" font-size="22" font-weight="700">LiveMic</text>
+      <text x="130" y="224" fill="#8aa8b8" font-size="16">Geräuschkalibrierung</text>
+    </g>
+    <path d="M315 390H430" stroke="#43e5ff" stroke-width="4" marker-end="url(#a2)"/>
+    <g transform="translate(440 265)">
+      <rect width="260" height="250" rx="24" fill="#15213b" stroke="#a887ff" stroke-width="2"/>
+      <path d="M64 105h132M64 135h132M64 165h95" stroke="#a887ff" stroke-width="10" stroke-linecap="round"/>
+      <text x="130" y="195" fill="#edf8fc" font-size="22" font-weight="700">temp.wav</text>
+      <text x="130" y="224" fill="#8aa8b8" font-size="16">lokale Audiodatei</text>
+    </g>
+    <path d="M700 390H815" stroke="#43e5ff" stroke-width="4" marker-end="url(#a2)"/>
+    <g transform="translate(825 215)">
+      <rect width="300" height="350" rx="28" fill="#122c33" stroke="#68edc1" stroke-width="3"/>
+      <circle cx="150" cy="105" r="62" fill="#193c42"/>
+      <text x="150" y="115" fill="#68edc1" font-size="28" font-weight="700">Whisper</text>
+      <text x="150" y="202" fill="#edf8fc" font-size="23" font-weight="700">whisper-3-large</text>
+      <text x="150" y="242" fill="#8aa8b8" font-size="17">Sprache: Deutsch</text>
+      <text x="150" y="276" fill="#8aa8b8" font-size="17">Transkription</text>
+      <rect x="65" y="300" width="170" height="30" rx="15" fill="#173c36"/>
+      <text x="150" y="321" fill="#9df2cf" font-size="14">LOCAL PROCESSING</text>
+    </g>
+    <path d="M1125 390H1210" stroke="#43e5ff" stroke-width="4" marker-end="url(#a2)"/>
+    <g transform="translate(1220 265)">
+      <rect width="130" height="250" rx="24" fill="#172538" stroke="#43e5ff"/>
+      <text x="65" y="82" fill="#43e5ff" font-size="15" font-weight="700">FILTER</text>
+      <text x="65" y="120" fill="#edf8fc" font-size="16">Halluzina-</text>
+      <text x="65" y="143" fill="#edf8fc" font-size="16">tionen</text>
+      <text x="65" y="190" fill="#9df2cf" font-size="16">Text ✓</text>
+    </g>
+  </g>
+  <rect x="210" y="665" width="980" height="92" rx="18" fill="#091827" stroke="#21465f"/>
+  <text x="700" y="704" text-anchor="middle" fill="#43e5ff" font-family="Arial" font-size="16" font-weight="700">ERGEBNIS</text>
+  <text x="700" y="738" text-anchor="middle" fill="#edf8fc" font-family="Arial" font-size="22">„Ich möchte bitte eine Cola.“ → strukturierter Text für das LLM</text>
+</svg>

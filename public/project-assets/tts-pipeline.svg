@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="860" viewBox="0 0 1400 860">
+  <defs>
+    <linearGradient id="bg3" x2="1" y2="1"><stop stop-color="#07131e"/><stop offset="1" stop-color="#191426"/></linearGradient>
+    <marker id="a3" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#44e4ff"/></marker>
+  </defs>
+  <rect width="1400" height="860" rx="34" fill="url(#bg3)"/>
+  <text x="70" y="82" fill="#edf8fc" font-family="Arial" font-size="38" font-weight="700">TTSModule · Text to Speech</text>
+  <text x="70" y="122" fill="#88a7b9" font-family="Arial" font-size="20">Aus einer LLM-Antwort wird die hörbare Stimme des Roboters</text>
+  <g font-family="Arial" text-anchor="middle">
+    <g transform="translate(70 270)">
+      <rect width="280" height="250" rx="24" fill="#102133" stroke="#44e4ff" stroke-width="2"/>
+      <text x="140" y="73" fill="#44e4ff" font-size="16" font-weight="700">ANTWORTTEXT</text>
+      <path d="M65 112h150M65 143h125M65 174h145" stroke="#dcecf3" stroke-width="11" stroke-linecap="round"/>
+      <text x="140" y="220" fill="#8aa8b8" font-size="16">LLM reply</text>
+    </g>
+    <path d="M350 395H475" stroke="#44e4ff" stroke-width="4" marker-end="url(#a3)"/>
+    <g transform="translate(485 210)">
+      <rect width="360" height="370" rx="30" fill="#152638" stroke="#a887ff" stroke-width="3"/>
+      <circle cx="180" cy="115" r="70" fill="#2a2445"/>
+      <path d="M145 115c18-36 52-36 70 0-18 36-52 36-70 0Z" fill="none" stroke="#c5a8ff" stroke-width="8"/>
+      <text x="180" y="225" fill="#edf8fc" font-size="29" font-weight="700">XTTS-v2</text>
+      <text x="180" y="267" fill="#c5a8ff" font-size="17">Sprachsynthese</text>
+      <text x="180" y="305" fill="#8aa8b8" font-size="16">Roboterstimme</text>
+      <rect x="95" y="326" width="170" height="28" rx="14" fill="#25203d"/>
+      <text x="180" y="346" fill="#d9c8ff" font-size="13">LOCAL INFERENCE</text>
+    </g>
+    <path d="M845 395H970" stroke="#44e4ff" stroke-width="4" marker-end="url(#a3)"/>
+    <g transform="translate(980 270)">
+      <rect width="350" height="250" rx="24" fill="#112b31" stroke="#75efbf" stroke-width="2"/>
+      <text x="175" y="70" fill="#75efbf" font-size="16" font-weight="700">AUDIOAUSGABE</text>
+      <text x="175" y="115" fill="#edf8fc" font-size="26" font-weight="700">response.wav</text>
+      <g stroke="#75efbf" stroke-width="7" stroke-linecap="round">
+        <path d="M85 170v20M110 156v48M135 140v80M160 162v36M185 146v68M210 158v44M235 137v86M260 165v30"/>
+      </g>
+    </g>
+  </g>
+  <rect x="330" y="666" width="740" height="92" rx="18" fill="#091827" stroke="#21465f"/>
+  <text x="700" y="704" text-anchor="middle" fill="#75efbf" font-family="Arial" font-size="16" font-weight="700">WIEDERGABE</text>
+  <text x="700" y="738" text-anchor="middle" fill="#edf8fc" font-family="Arial" font-size="22">Audiodatei lokal abspielen → Gast hört die Roboterantwort</text>
+</svg>
